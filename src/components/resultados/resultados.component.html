@@ -1,0 +1,40 @@
+<h3>Resultado da carta selecionada:</h3>
+<div class="row container-fluid" style="align-items: center;">
+      <div class="card col-md-4" style="width: 20rem; height: 12rem; margin: 10px;" *ngFor="let retorno of this.cardsEmitidos?.sets" (click)="recuperarDetalhesCards(retorno)">
+        <div class="card-body">
+          <h3 class="card-title">{{retorno.name}}</h3>
+          <h3 class="card-subtitle mb-2 text-body-secondary">Block: {{retorno?.block}}</h3>
+          <p class="card-text" style="margin-left: 100px; margin-top: 20px; border: 1px solid black; padding: 5px;text-align: center; border-radius: 10px;">Data: {{retorno.releaseDate}}</p>
+        </div>
+      </div>
+</div>
+
+<div class="d-flex align-items-center" style="justify-content: space-between;" *ngIf="carregarLoadingCircle">
+  <strong>Carregando cartas, aguarde por gentileza...</strong>
+  <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+</div>
+
+<div class="row container-fluid" *ngIf="creatureCards.length > 0">
+  <h2>Cartas do tipo 'creature' obtidas:</h2>
+  <div class="card col-md-4" style="width: 18rem; margin: 10px;"  *ngFor="let card of creatureCards">
+    <img class="card-img-top" src="{{card.imageUrl}}" alt="Card image cap">
+    <div class="card-body">
+      <p class="card-text">Nome: {{card.name}}</p>
+      <p class="card-text">Mana Cost: {{card.manaCost}}</p>
+      <p class="card-text">color Identity: {{card.colorIdentity}}</p>
+      <p class="card-text">text: {{card.text}}</p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="creatureCards.length === 0 && !carregarLoadingCircle && carregarComponente">
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Não encontrado!</strong> Tente novamente com uma coleção.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,23 @@
+<div class="container-fluid p-4 mt-3" style="border: 1px solid rgba(0, 0, 0, 0.39); border-radius: 30px; padding: 30px;">
+    <h3>Realize o filtro das cartas:</h3>
+    <form [formGroup]="meuForm" (ngSubmit)="onSubmit()" style="display: flex; align-items: center; width: 100vw;">
+        <div style="margin-right: 15px; width: 40%;">
+          <input type="text" formControlName="name" class="form-control" placeholder="Nome">
+        </div>
+        <div style="margin-right: 15px; width: 40%;">
+          <select formControlName="bloco" class="form-control">
+            <option value="" disabled selected>Selecione uma opção</option>
+            <option value="Amonkhet">Amonkhet</option>
+            <option value="Ixalan">Ixalan</option>
+            <option value="Zendikar">Zendikar</option>
+            <option value="Ravnica">Ravnica</option>
+            <option value="Onslaught">Onslaught</option>
+          </select>
+          <div *ngIf="meuForm.get('bloco')?.invalid && meuForm.get('bloco')?.touched">
+            <small class="text-danger">Obrigatório selecionar uma opção</small>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!atualizarEstadoBotao()">Buscar</button>
+    </form>
+    
+</div>
